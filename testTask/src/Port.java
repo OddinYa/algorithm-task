@@ -57,7 +57,7 @@ public class Port implements StringOfArrayToArrayOfInteger, StringArrayToInteger
         return result;
     }
 
-    private ArrayList<Integer> arrayIntegerArrayToAllPossibleOrderedPairs(ArrayList<ArrayList<Integer>>
+    private ArrayList<ArrayList<Integer>> arrayIntegerArrayToAllPossibleOrderedPairs(ArrayList<ArrayList<Integer>>
                                                                                              toPossibleOrderedPairs) {
         ArrayList<ArrayList<Integer>> resutl = new ArrayList<>();
         if (toPossibleOrderedPairs.size() <= 1) {
@@ -65,13 +65,21 @@ public class Port implements StringOfArrayToArrayOfInteger, StringArrayToInteger
         }
         ArrayList<Integer> temp = new ArrayList<>();
         ArrayList<Integer> first = toPossibleOrderedPairs.get(0);
+        for (int i = 0; i < first.size(); i++) {
+            for (int j = 1; j < toPossibleOrderedPairs.size(); j++) {
+                temp.add(first.get(i));
+                for (int k = i; k < toPossibleOrderedPairs.get(j).size() &&
+                        k == i; ) {
+                    temp.add(toPossibleOrderedPairs.get(j).get(k));
+                    k++;
+                }
+                resutl.add(arrayInteger(temp));
+            }
 
+        }
 
 
         return resutl;
-
-
-
     }
 
     private ArrayList<Integer> arrayInteger(ArrayList<Integer> numbs) {
