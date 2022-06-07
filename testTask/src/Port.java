@@ -24,9 +24,7 @@ public class Port implements StringOfArrayToArrayOfInteger, StringArrayToInteger
             result.add(arrayOfSubsequentNumbers(strArray));
         }
 
-
         return arrayIntegerArrayToAllPossibleOrderedPairs(result);
-
 
     }
 
@@ -56,27 +54,39 @@ public class Port implements StringOfArrayToArrayOfInteger, StringArrayToInteger
         }
         return result;
     }
-
-    //Не работает...
     private ArrayList<ArrayList<Integer>> arrayIntegerArrayToAllPossibleOrderedPairs(ArrayList<ArrayList<Integer>>
                                                                                              toPossibleOrderedPairs) {
 
         ArrayList<ArrayList<Integer>> resutl = new ArrayList<>();
+        ArrayList<Integer> temp = new ArrayList<>();
 
         if (toPossibleOrderedPairs.size() <= 1) {
-            return toPossibleOrderedPairs;
+            for (Integer e : toPossibleOrderedPairs.get(0)) {
+                temp.add(e);
+                resutl.add(arrayInteger(temp));
+                temp.clear();
+            }
         }
-        ArrayList<Integer> temp = new ArrayList<>();
+        int count = 0;
         ArrayList<Integer> first = toPossibleOrderedPairs.get(0);
-        for (int i = 0; i < first.size(); i++) {
+        for (int i = 0; i < first.size(); ) {
             temp.add(first.get(i));
             for (int j = 1; j < toPossibleOrderedPairs.size(); j++) {
-                for (int k = i; k < toPossibleOrderedPairs.get(j).size();) {
-                    temp.add(toPossibleOrderedPairs.get(j).get(k));
-                    break;
+                if (toPossibleOrderedPairs.get(j).size() == 1) {
+                    temp.add(toPossibleOrderedPairs.get(j).get(0));
+                } else {
+                    for (int k = 0; k < 1; k++) {
+                        temp.add(toPossibleOrderedPairs.get(j).get(count));
+                        count++;
+                    }
                 }
-                resutl.add(arrayInteger(temp));
             }
+            if (count == toPossibleOrderedPairs.size() - 1) {
+                i++;
+                count = 0;
+            }
+            resutl.add(arrayInteger(temp));
+            temp.clear();
         }
 
 
@@ -85,9 +95,7 @@ public class Port implements StringOfArrayToArrayOfInteger, StringArrayToInteger
 
     private ArrayList<Integer> arrayInteger(ArrayList<Integer> numbs) {
 
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        arrayList.addAll(numbs);
+        ArrayList<Integer> arrayList = new ArrayList<>(numbs);
         return arrayList;
-
     }
 }
