@@ -6,7 +6,7 @@ public class Main{
 
         Port port = new Port();
         ArrayList<String> arrayList1 = new ArrayList<>();
-        arrayList1.add("1,3-5");
+        arrayList1.add("7-4");
         ArrayList<String> arrayList2 = new ArrayList<String>();
         arrayList2.add("2");
         ArrayList<String> arrayList4 = new ArrayList<String>();

@@ -41,8 +41,15 @@ public class Port implements StringOfArrayToArrayOfInteger, StringArrayToInteger
 
                 for (int i = 0; i < e.length(); i++) {
                     if (e.charAt(i) == '-') {
+
+                        int abs;
                         int numbOne = Integer.parseInt(e.substring(0, i));
                         int numbTwo = Integer.parseInt(e.substring(i + 1)) + 1;
+                        if(numbOne>numbTwo){
+                            abs = numbTwo-1;
+                            numbTwo = numbOne+1;
+                            numbOne = abs;
+                        }
                         for (int j = numbOne; j < numbTwo; j++) {
                             temp += j + ",";
                         }
