@@ -1,10 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class PortImpl implements Port {
+public class Port {
+    /** Метод, преобразовывающий массив строк indexes в массив
+     *  последовательностей чисел.
+     * @param indexes Массив строк.
+     * @return Массив последовательностей чисел.
+     */
 
-    @Override
-    public ArrayList<Integer> arrayOfSubsequentNumbers(ArrayList<String> indexes) {
+    public static ArrayList<Integer> arrayOfSubsequentNumbers(ArrayList<String> indexes) {
 
         ArrayList<Integer> result = new ArrayList<>();
 
@@ -15,8 +19,13 @@ public class PortImpl implements Port {
         return result;
     }
 
-    @Override
-    public ArrayList<ArrayList<Integer>> toArrayOfInteger(ArrayList<ArrayList<String>> indexes) {
+    /** Метод, возвращающий все возможные упорядоченные пары элементов
+     *    полученных массивов чисел.
+     * @param indexes Двумерный массив строк.
+     * @return Двумерный массив чисел.
+     */
+
+    public static ArrayList<ArrayList<Integer>> toAllPossibleOrderedPairs(ArrayList<ArrayList<String>> indexes) {
 
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
@@ -28,7 +37,7 @@ public class PortImpl implements Port {
 
     }
 
-    private ArrayList<Integer> stingToInteger(String string) {
+    private static ArrayList<Integer> stingToInteger(String string) {
 
         ArrayList<Integer> result = new ArrayList<>();
         String[] strArr;
@@ -62,7 +71,7 @@ public class PortImpl implements Port {
         return result;
     }
 
-    private ArrayList<ArrayList<Integer>> arrayIntegerArrayToAllPossibleOrderedPairs(ArrayList<ArrayList<Integer>>
+    private static ArrayList<ArrayList<Integer>> arrayIntegerArrayToAllPossibleOrderedPairs(ArrayList<ArrayList<Integer>>
                                                                                              toPossibleOrderedPairs) {
 
         ArrayList<ArrayList<Integer>> resutl = new ArrayList<>();
@@ -89,7 +98,7 @@ public class PortImpl implements Port {
                     }
                 }
             }
-            if (count == toPossibleOrderedPairs.size() - 1) {
+            if (count == toPossibleOrderedPairs.get(toPossibleOrderedPairs.size()-1).size()) {
                 i++;
                 count = 0;
             }
@@ -101,7 +110,7 @@ public class PortImpl implements Port {
         return resutl;
     }
 
-    private ArrayList<Integer> arrayInteger(ArrayList<Integer> numbs) {
+    private static ArrayList<Integer> arrayInteger(ArrayList<Integer> numbs) {
 
         ArrayList<Integer> arrayList = new ArrayList<>(numbs);
         return arrayList;
