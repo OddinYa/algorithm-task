@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/testTask/main/java/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/testTask/test/java" isTestSource="true" />
     </content>
+    <content url="file://$MODULE_DIR$/out" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" scope="TEST">
@@ -35,5 +36,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="lib-Port" level="project" />
   </component>
 </module>
