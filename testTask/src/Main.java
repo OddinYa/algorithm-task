@@ -4,7 +4,7 @@ public class Main{
 
     public static void main(String[] args) {
 
-        Port port = new Port();
+      //  Port port = new Port();
         ArrayList<String> arrayList1 = new ArrayList<>();
         arrayList1.add("7-4");
         ArrayList<String> arrayList2 = new ArrayList<String>();
@@ -26,7 +26,7 @@ public class Main{
 
          System.out.println(arrayListAll.toString());
          //System.out.println(port.arrayOfSubsequentNumbers(arrayList1));
-         System.out.println(port.toArrayOfInteger(arrayListAll));
+      //   System.out.println(port.toArrayOfInteger(arrayListAll));
 
     }
 
