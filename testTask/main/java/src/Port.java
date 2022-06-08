@@ -84,6 +84,13 @@ public class Port {
                 temp.clear();
             }
         }
+        int countElem = 0 ;
+        for(ArrayList<Integer> e : toPossibleOrderedPairs){
+            if(countElem<e.size()){
+                countElem=e.size();
+            }
+        }
+       
         int count = 0;
         ArrayList<Integer> first = toPossibleOrderedPairs.get(0);
         for (int i = 0; i < first.size(); ) {
@@ -99,7 +106,7 @@ public class Port {
                     }
                 }
             }
-            if (count == toPossibleOrderedPairs.get(toPossibleOrderedPairs.size()-1).size()) {
+            if (count == countElem) {
                 i++;
                 count = 0;
             }
