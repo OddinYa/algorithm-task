@@ -2,8 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Port {
-    /** Метод, преобразовывающий массив строк indexes в массив
-     *  последовательностей чисел.
+    /**
+     * Метод, преобразовывающий массив строк indexes в массив
+     * последовательностей чисел.
+     *
      * @param indexes Массив строк.
      * @return Массив последовательностей чисел.
      */
@@ -11,16 +13,25 @@ public class Port {
     public static ArrayList<Integer> arrayOfSubsequentNumbers(ArrayList<String> indexes) {
 
         ArrayList<Integer> result = new ArrayList<>();
-
+        if (indexes.size() == 0) {
+            return result;
+        }
         for (String s : indexes) {
+            if (s == null) {
+                continue;
+            } else if (s.equals("")) {
+                continue;
+            }
             result.addAll(stingToInteger(s));
         }
 
         return result;
     }
 
-    /** Метод, возвращающий все возможные упорядоченные пары элементов
-     *    полученных массивов чисел.
+    /**
+     * Метод, возвращающий все возможные упорядоченные пары элементов
+     * полученных массивов чисел.
+     *
      * @param indexes Двумерный массив строк.
      * @return Двумерный массив чисел.
      */
@@ -54,9 +65,9 @@ public class Port {
                         int abs;
                         int numbOne = Integer.parseInt(e.substring(0, i));
                         int numbTwo = Integer.parseInt(e.substring(i + 1)) + 1;
-                        if(numbOne>numbTwo){
-                            abs = numbTwo-1;
-                            numbTwo = numbOne+1;
+                        if (numbOne > numbTwo) {
+                            abs = numbTwo - 1;
+                            numbTwo = numbOne + 1;
                             numbOne = abs;
                         }
                         for (int j = numbOne; j < numbTwo; j++) {
@@ -72,7 +83,7 @@ public class Port {
     }
 
     private static ArrayList<ArrayList<Integer>> arrayIntegerArrayToAllPossibleOrderedPairs(ArrayList<ArrayList<Integer>>
-                                                                                             toPossibleOrderedPairs) {
+                                                                                                    toPossibleOrderedPairs) {
 
         ArrayList<ArrayList<Integer>> resutl = new ArrayList<>();
         ArrayList<Integer> temp = new ArrayList<>();
@@ -84,13 +95,15 @@ public class Port {
                 temp.clear();
             }
         }
-        int countElem = 0 ;
-        for(ArrayList<Integer> e : toPossibleOrderedPairs){
-            if(countElem<e.size()){
-                countElem=e.size();
+
+        int countElem = 0;
+
+        for (ArrayList<Integer> e : toPossibleOrderedPairs) {
+            if (countElem < e.size()) {
+                countElem = e.size();
             }
         }
-       
+
         int count = 0;
         ArrayList<Integer> first = toPossibleOrderedPairs.get(0);
         for (int i = 0; i < first.size(); ) {
@@ -98,17 +111,26 @@ public class Port {
             for (int j = 1; j < toPossibleOrderedPairs.size(); j++) {
                 if (toPossibleOrderedPairs.get(j).size() == 1) {
                     temp.add(toPossibleOrderedPairs.get(j).get(0));
-                    count++;
+
                 } else {
                     for (int k = 0; k < 1; k++) {
+
                         temp.add(toPossibleOrderedPairs.get(j).get(count));
-                        count++;
                     }
                 }
             }
-            if (count == countElem) {
+
+            count++;
+
+            if (count >= countElem
+                    || ((count >= toPossibleOrderedPairs
+                    .get(toPossibleOrderedPairs.size() - 1).size())
+                    && (toPossibleOrderedPairs
+                    .get(toPossibleOrderedPairs.size() - 1).size() != 1))) {
+
                 i++;
                 count = 0;
+
             }
             resutl.add(arrayInteger(temp));
             temp.clear();
@@ -120,7 +142,6 @@ public class Port {
 
     private static ArrayList<Integer> arrayInteger(ArrayList<Integer> numbs) {
 
-        ArrayList<Integer> arrayList = new ArrayList<>(numbs);
-        return arrayList;
+        return new ArrayList<>(numbs);
     }
 }
