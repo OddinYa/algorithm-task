@@ -91,6 +91,7 @@ public class Port {
             for (int j = 1; j < toPossibleOrderedPairs.size(); j++) {
                 if (toPossibleOrderedPairs.get(j).size() == 1) {
                     temp.add(toPossibleOrderedPairs.get(j).get(0));
+                    count++;
                 } else {
                     for (int k = 0; k < 1; k++) {
                         temp.add(toPossibleOrderedPairs.get(j).get(count));
