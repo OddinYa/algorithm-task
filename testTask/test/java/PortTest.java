@@ -1,9 +1,12 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+
 import java.util.ArrayList;
 
 class PortTest {
+
+
 
 
     @Test
@@ -50,6 +53,79 @@ class PortTest {
         expected.add(56);
 
         ArrayList<Integer> actual = Port.arrayOfSubsequentNumbers(str);
+
+        Assertions.assertEquals(expected,actual);
+    }
+    @Test()
+    void arrayOfSubsequentNumbersCheckNotException(){
+
+        ArrayList<String> str = new ArrayList<>();
+        str.add("");
+
+        ArrayList<Integer> expected = new ArrayList<>();
+
+        ArrayList<Integer> actual = Port.arrayOfSubsequentNumbers(str);
+
+        Assertions.assertEquals(expected,actual);
+    }
+    @Test()
+    void arrayOfSubsequentNumbersCheckNotNullException(){
+
+        ArrayList<String> str = new ArrayList<>();
+        str.add(null);
+
+        ArrayList<Integer> expected = new ArrayList<>();
+
+        ArrayList<Integer> actual = Port.arrayOfSubsequentNumbers(str);
+
+        Assertions.assertEquals(expected,actual);
+    }
+
+    @Test
+    void toAllPossibleOrderedPairsCheckException(){
+
+        ArrayList<String> arrayList1 = new ArrayList<>();
+        arrayList1.add("");
+        ArrayList<String> arrayList2 = new ArrayList<>();
+        arrayList2.add("");
+        ArrayList<String> arrayList3 = new ArrayList<>();
+        arrayList3.add("");
+        ArrayList<ArrayList<String>> arrayList = new ArrayList<>();
+        arrayList.add(arrayList1);
+        arrayList.add(arrayList2);
+        arrayList.add(arrayList3);
+
+        ArrayList<ArrayList<Integer>> expected = new ArrayList<>();
+
+
+        ArrayList<ArrayList<Integer>> actual = new ArrayList<>();
+
+        actual = Port.toAllPossibleOrderedPairs(arrayList);
+
+
+        Assertions.assertEquals(expected,actual);
+    }
+    @Test
+    void toAllPossibleOrderedPairsCheckNotNullException(){
+
+        ArrayList<String> arrayList1 = new ArrayList<>();
+        arrayList1.add(null);
+        ArrayList<String> arrayList2 = new ArrayList<>();
+        arrayList2.add(null);
+        ArrayList<String> arrayList3 = new ArrayList<>();
+        arrayList3.add(null);
+        ArrayList<ArrayList<String>> arrayList = new ArrayList<>();
+        arrayList.add(arrayList1);
+        arrayList.add(arrayList2);
+        arrayList.add(arrayList3);
+
+        ArrayList<ArrayList<Integer>> expected = new ArrayList<>();
+
+
+        ArrayList<ArrayList<Integer>> actual = new ArrayList<>();
+
+        actual = Port.toAllPossibleOrderedPairs(arrayList);
+
 
         Assertions.assertEquals(expected,actual);
     }
@@ -194,6 +270,102 @@ class PortTest {
         expected.add(arrayInteger13);
         expected.add(arrayInteger14);
         expected.add(arrayInteger15);
+
+        ArrayList<ArrayList<Integer>> actual = new ArrayList<>();
+
+        actual = Port.toAllPossibleOrderedPairs(arrayList);
+
+        Assertions.assertEquals(expected,actual);
+
+    }
+    @Test
+    void toAllPossibleOrderedPairsCheckWorkFirstArraySizeOne(){
+
+        ArrayList<String> arrayList1 = new ArrayList<>();
+        arrayList1.add("1");
+        ArrayList<String> arrayList2 = new ArrayList<>();
+        arrayList2.add("2,5-8");
+        ArrayList<ArrayList<String>> arrayList = new ArrayList<>();
+        arrayList.add(arrayList1);
+        arrayList.add(arrayList2);
+
+        ArrayList<ArrayList<Integer>> expected = new ArrayList<>();
+
+        ArrayList<Integer> arrayInteger1 = new ArrayList<>();
+        arrayInteger1.add(1);
+        arrayInteger1.add(2);
+        ArrayList<Integer> arrayInteger2 = new ArrayList<>();
+        arrayInteger2.add(1);
+        arrayInteger2.add(5);
+        ArrayList<Integer> arrayInteger3 = new ArrayList<>();
+        arrayInteger3.add(1);
+        arrayInteger3.add(6);
+        ArrayList<Integer> arrayInteger4 = new ArrayList<>();
+        arrayInteger4.add(1);
+        arrayInteger4.add(7);
+        ArrayList<Integer> arrayInteger5 = new ArrayList<>();
+        arrayInteger5.add(1);
+        arrayInteger5.add(8);
+
+
+        expected.add(arrayInteger1);
+        expected.add(arrayInteger2);
+        expected.add(arrayInteger3);
+        expected.add(arrayInteger4);
+        expected.add(arrayInteger5);
+
+
+        ArrayList<ArrayList<Integer>> actual = new ArrayList<>();
+
+        actual = Port.toAllPossibleOrderedPairs(arrayList);
+
+        Assertions.assertEquals(expected,actual);
+
+    }
+    @Test
+    void toAllPossibleOrderedPairsCheckWorkFirstArrayAndLastArraySizeOne(){
+
+        ArrayList<String> arrayList1 = new ArrayList<>();
+        arrayList1.add("1");
+        ArrayList<String> arrayList2 = new ArrayList<>();
+        arrayList2.add("2,5-8");
+        ArrayList<String> arrayList3 = new ArrayList<>();
+        arrayList3.add("2");
+        ArrayList<ArrayList<String>> arrayList = new ArrayList<>();
+        arrayList.add(arrayList1);
+        arrayList.add(arrayList2);
+        arrayList.add(arrayList3);
+
+        ArrayList<ArrayList<Integer>> expected = new ArrayList<>();
+
+        ArrayList<Integer> arrayInteger1 = new ArrayList<>();
+        arrayInteger1.add(1);
+        arrayInteger1.add(2);
+        arrayInteger1.add(2);
+        ArrayList<Integer> arrayInteger2 = new ArrayList<>();
+        arrayInteger2.add(1);
+        arrayInteger2.add(5);
+        arrayInteger2.add(2);
+        ArrayList<Integer> arrayInteger3 = new ArrayList<>();
+        arrayInteger3.add(1);
+        arrayInteger3.add(6);
+        arrayInteger3.add(2);
+        ArrayList<Integer> arrayInteger4 = new ArrayList<>();
+        arrayInteger4.add(1);
+        arrayInteger4.add(7);
+        arrayInteger4.add(2);
+        ArrayList<Integer> arrayInteger5 = new ArrayList<>();
+        arrayInteger5.add(1);
+        arrayInteger5.add(8);
+        arrayInteger5.add(2);
+
+
+        expected.add(arrayInteger1);
+        expected.add(arrayInteger2);
+        expected.add(arrayInteger3);
+        expected.add(arrayInteger4);
+        expected.add(arrayInteger5);
+
 
         ArrayList<ArrayList<Integer>> actual = new ArrayList<>();
 
