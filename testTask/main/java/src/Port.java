@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Port {
     /**
@@ -14,7 +15,7 @@ public class Port {
      * @return Массив последовательностей чисел.
      */
 
-    public static ArrayList<Integer> arrayOfSubsequentNumbers(ArrayList<String> indexes) {
+    public static List<Integer> arrayOfSubsequentNumbers(List<String> indexes) {
 
         ArrayList<Integer> result = new ArrayList<>();
         if (indexes.size() == 0) {
@@ -40,11 +41,11 @@ public class Port {
      * @return Двумерный массив чисел.
      */
 
-    public static ArrayList<ArrayList<Integer>> toAllPossibleOrderedPairs(ArrayList<ArrayList<String>> indexes) {
+    public static List<List<Integer>> toAllPossibleOrderedPairs(List<List<String>> indexes) {
 
-        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        List<List<Integer>> result = new ArrayList<>();
 
-        for (ArrayList<String> strArray : indexes) {
+        for (List<String> strArray : indexes) {
             result.add(arrayOfSubsequentNumbers(strArray));
         }
 
@@ -52,30 +53,31 @@ public class Port {
 
     }
 
-    private static ArrayList<Integer> stingToInteger(String string) {
+    private static List<Integer> stingToInteger(String string) {
         var integersList = Arrays.stream(string.split(","))
-                .map(value ->{
-                    if(value.contains("-")) {
+                .map(value -> {
+                    if (value.contains("-")) {
                         var values = Arrays.stream(value.split("-"))
                                 .mapToInt(Integer::parseInt)
                                 .toArray();
                         return IntStream
-                                .rangeClosed(values[0],values[1])
+                                .rangeClosed(values[0], values[1])
                                 .boxed()
                                 .collect(Collectors.toList());
-                    }else {
+                    } else {
                         return List.of(Integer.parseInt(value));
                     }
                 }).flatMap(Collection::stream).collect(Collectors.toList());
 
-        return (ArrayList<Integer>) integersList;
+        return  integersList;
+
     }
 
-    private static ArrayList<ArrayList<Integer>> arrayIntegerArrayToAllPossibleOrderedPairs(ArrayList<ArrayList<Integer>>
+    private static List<List<Integer>> arrayIntegerArrayToAllPossibleOrderedPairs(List<List<Integer>>
                                                                                                     toPossibleOrderedPairs) {
 
-        ArrayList<ArrayList<Integer>> resutl = new ArrayList<>();
-        ArrayList<Integer> temp = new ArrayList<>();
+        List<List<Integer>> resutl = new ArrayList<>();
+        List<Integer> temp = new ArrayList<>();
 
         if (toPossibleOrderedPairs.size() <= 1) {
             for (Integer e : toPossibleOrderedPairs.get(0)) {
@@ -87,14 +89,14 @@ public class Port {
 
         int countElem = 0;
 
-        for (ArrayList<Integer> e : toPossibleOrderedPairs) {
+        for (List<Integer> e : toPossibleOrderedPairs) {
             if (countElem < e.size()) {
                 countElem = e.size();
             }
         }
         int count = 0;
 
-        ArrayList<Integer> first = toPossibleOrderedPairs.get(0);
+        List<Integer> first = toPossibleOrderedPairs.get(0);
         for (int i = 0; i < first.size(); ) {
             temp.add(first.get(i));
             for (int j = 1; j < toPossibleOrderedPairs.size(); j++) {
@@ -128,7 +130,7 @@ public class Port {
         return resutl;
     }
 
-    private static ArrayList<Integer> arrayInteger(ArrayList<Integer> numbs) {
+    private static List<Integer> arrayInteger(List<Integer> numbs) {
 
         return new ArrayList<>(numbs);
     }
