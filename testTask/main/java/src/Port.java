@@ -1,5 +1,9 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Port {
     /**
@@ -49,37 +53,22 @@ public class Port {
     }
 
     private static ArrayList<Integer> stingToInteger(String string) {
-
-        ArrayList<Integer> result = new ArrayList<>();
-        String[] strArr;
-
-        strArr = string.split(",");
-        for (String e : strArr) {
-            if (e.contains("-")) {
-
-                String temp = "";
-
-                for (int i = 0; i < e.length(); i++) {
-                    if (e.charAt(i) == '-') {
-
-                        int abs;
-                        int numbOne = Integer.parseInt(e.substring(0, i));
-                        int numbTwo = Integer.parseInt(e.substring(i + 1)) + 1;
-                        if (numbOne > numbTwo) {
-                            abs = numbTwo - 1;
-                            numbTwo = numbOne + 1;
-                            numbOne = abs;
-                        }
-                        for (int j = numbOne; j < numbTwo; j++) {
-                            temp += j + ",";
-                        }
-                        List<Integer> req = stingToInteger(temp);
-                        result.addAll(req);
+        var integersList = Arrays.stream(string.split(","))
+                .map(value ->{
+                    if(value.contains("-")) {
+                        var values = Arrays.stream(value.split("-"))
+                                .mapToInt(Integer::parseInt)
+                                .toArray();
+                        return IntStream
+                                .rangeClosed(values[0],values[1])
+                                .boxed()
+                                .collect(Collectors.toList());
+                    }else {
+                        return List.of(Integer.parseInt(value));
                     }
-                }
-            } else result.add(Integer.parseInt(e));
-        }
-        return result;
+                }).flatMap(Collection::stream).collect(Collectors.toList());
+
+        return (ArrayList<Integer>) integersList;
     }
 
     private static ArrayList<ArrayList<Integer>> arrayIntegerArrayToAllPossibleOrderedPairs(ArrayList<ArrayList<Integer>>
@@ -103,8 +92,8 @@ public class Port {
                 countElem = e.size();
             }
         }
-
         int count = 0;
+
         ArrayList<Integer> first = toPossibleOrderedPairs.get(0);
         for (int i = 0; i < first.size(); ) {
             temp.add(first.get(i));
@@ -135,7 +124,6 @@ public class Port {
             resutl.add(arrayInteger(temp));
             temp.clear();
         }
-
 
         return resutl;
     }
